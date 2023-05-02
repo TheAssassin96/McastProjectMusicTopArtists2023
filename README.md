@@ -5,4 +5,9 @@ Instructions:
 
 Download the necessary modules found from the requirements.txt file listed using
 
-pip install [module_name]==[module_version] From the cmd
+pip install [module_name]==[module_version] From the cmd like the example Below
+
+![image](https://user-images.githubusercontent.com/98620837/235660607-70f2b877-b1f3-43ec-8b1c-76ffffbd50d6.png)
+
+
+
