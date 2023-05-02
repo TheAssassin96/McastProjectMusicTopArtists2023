@@ -18,14 +18,14 @@ C:\Users\[USER]\AppData\Local\Programs\Python\Python39\Scripts
 # Flowcharts
 <h2 align="center">On Program Start:</h2>
 
-<img src="https://user-images.githubusercontent.com/98620837/235661574-14651f58-8519-403f-aebb-538a4e60c23c.png" width="400px" align="center">
+<img align="center" src="https://user-images.githubusercontent.com/98620837/235661574-14651f58-8519-403f-aebb-538a4e60c23c.png" width="400px" >
 
 <h2 align="center">On Lyric Button Press:</h2>
 
-<img src="https://user-images.githubusercontent.com/98620837/235661649-d7051f0b-3ae4-4c23-8756-73376232df3e.png" width="400px" align="center">
+<img align="center" src="https://user-images.githubusercontent.com/98620837/235661649-d7051f0b-3ae4-4c23-8756-73376232df3e.png" width="400px" >
 
 <h2 align="center">On Download Button Press:</h2>
 
-<img src="https://user-images.githubusercontent.com/98620837/235661709-a57a2ee2-357d-48a1-bdc6-dd4715c41f71.png" width="400px" align="center">
+<img align="center" src="https://user-images.githubusercontent.com/98620837/235661709-a57a2ee2-357d-48a1-bdc6-dd4715c41f71.png" width="400px" >
 
 
