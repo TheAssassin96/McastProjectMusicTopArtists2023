@@ -16,7 +16,7 @@ pip install [module_name]==[module_version] this needs to be run in the director
 C:\Users\[USER]\AppData\Local\Programs\Python\Python39\Scripts
 
 # Flowcharts
-## On Program Start:
+<p align="center">## On Program Start:</p>
 
 <img src="https://user-images.githubusercontent.com/98620837/235661574-14651f58-8519-403f-aebb-538a4e60c23c.png" width="400px">
 
