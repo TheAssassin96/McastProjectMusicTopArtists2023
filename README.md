@@ -18,7 +18,7 @@ C:\Users\[USER]\AppData\Local\Programs\Python\Python39\Scripts
 # Flowcharts
 On Program Start:
 
-![ProgramStartfin](https://user-images.githubusercontent.com/98620837/235661574-14651f58-8519-403f-aebb-538a4e60c23c.png)
+![ProgramStartfin](https://user-images.githubusercontent.com/98620837/235661574-14651f58-8519-403f-aebb-538a4e60c23c.png | width=100)
 
 On Lyrics Button Click:
 
