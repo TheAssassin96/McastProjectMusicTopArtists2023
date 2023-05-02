@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
+         
+        *{
+            font-family: 'Fredoka', sans-serif;
+        }
+        body {
+            background-color: #17033c;
+            margin: 0;
+            padding: 3vh 5%;
+        
+        }
+        
+        main {
+            background-color: #302c6a;
+            padding: 1em 1em;
+            border-radius: 32px;
+            box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+            min-height: 91vh;
+            max-height: max-content;
+            transition: height 0.5s ease-in-out;
+        }
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin: 35px 0 35px 0;
+            padding: 0;
+            color: #ccc;
+        }
+        form {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        label {
+            font-size: 1rem;
+            margin: 0;
+            padding: 0;
+            color: #ccc;
+        }
+        input {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #17033c;
+            border: 1px solid #17033c;
+            border-radius: 32px;
+            margin: 0.5rem 0;
+            color: #ccc;
+        }
+        input:focus {
+            outline: none;
+        }
+        #formBut {
+            background-color: #17033c;
+            border: 1px solid #17033c;
+            cursor: pointer;
+            color: #ccc;
+        }
+        #formBut:hover {
+            background-color: #ccc;
+            color: #17033c;
+            transition: 0.5s;
+        }
+        #formBut:not(:hover) {
+            background-color: #17033c;
+            color: #ccc;
+            transition: 0.5s;
+        }
+        .lyricBut{
+            background-color: #302c6a;
+            color: #fff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            margin: 0;
+            font-size: 14px;
+        }
+        .lyricBut:hover{
+            transform: scale(1.05);
+            background-color: #17033c;
+            border: 1px solid #302c6a;
+            transition: 0.5s;
+        }
+        .lyricBut:not(:hover){
+            transform: scale(1);
+            background-color: #302c6a;
+            border: 1px solid #ccc;
+            transition: 0.5s;
+        }
+
+        .card-deck {
+            padding: 10vh 5%;
+            gap: 3%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+        .card-deck-lyrics{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            align-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        .card {
+            width: 15%;
+            height: 13vh;
+            margin: 0;
+            padding: 2vh 1%;
+            border-radius: 16px;
+            box-shadow: 0 0 50px 0 rgba(23, 3, 60, 1);
+            background-color: #17033c;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            /* animation css */
+            position: relative;
+            top: -100px;
+            opacity: 0;
+            animation-name: slide-top;
+            animation-duration: 1s;
+            animation-delay: 0.2s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes slide-top {
+            0% {
+                top: -100px;
+                opacity: 0;
+            }
+            50%{
+                top: 0px;
+                opacity: 0.5;
+            }
+            100% {
+                top: 0;
+                opacity: 1;
+            }
+        }
+        .card-body{
+            display: flex;
+            width: 100%;
+            
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            align-content: flex-start;
+            margin-left:5% ;
+            padding: 0;
+
+        }
+        .card-title{
+            font-size: 11px;
+            font-weight: bolder;
+            color: #ccc;
+            padding: 0;
+        }
+        h2{
+            text-align: center;
+            font-size:  2rem;
+            margin: 35px 0 35px 0;
+            color: #ccc;
+            padding: 0;
+        }
+        .card-img {
+            width: 100%;
+            height: 13vh;
+            border-radius: 16px;
+            background-repeat: no-repeat;
+            background-size: cover;  
+        }
+        .card-img:hover{
+            transform: scale(1.05);
+            opacity: 0.8;
+            transition: 0.5s;
+        }
+        .card-img:not(:hover){
+            transform: scale(1);
+            opacity: 1;
+            transition: 0.5s;
+        }
+        .card-lyrics{
+            height: 30rem;
+            width: 30rem;
+            overflow:auto;
+            overflow-y: auto;
+            margin: 0 0 50px 0;
+            border-radius: 32px;
+            box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+            background-color: #17033c;
+            padding: 0.5rem;
+            padding-left: 10rem;
+            color: #ccc;
+            
+        }
+        /*Loader*/
+        .lds-ring {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px; /* changed from 80px */
+            height: 160px; /* changed from 80px */
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 128px; /* changed from 64px */
+            height: 128px; /* changed from 64px */
+            margin: 16px; /* changed from 8px */
+            border: 16px solid rgb(23, 3, 60); /* changed from 8px */
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: rgb(23, 3, 60) transparent transparent transparent;
+        }
+  
+        .lds-ring div:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+        
+        .lds-ring div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+        
+        .lds-ring div:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+        
+        @keyframes lds-ring {
+            0% {
+            transform: rotate(0deg);
+            }
+            100% {
+            transform: rotate(360deg);
+            }
+        }
+        /*Loader END*/
+        .analyzeContainer{
+            
+            width: 40rem;
+            min-height: 5vh;
+            max-height: 5vh;
+            height: auto;
+            margin: 0 0 15px 0;
+            padding: 1rem;
+            border-radius: 32px;
+            box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+            background-color: #17033c;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center; 
+            transition: all 0.5s ease-in-out;
+            
+        }
+        .analyzeContainer.expand{
+            max-height: 35vh;
+            width: 50rem;
+        }
+        #analyzeBut{
+            width: 10rem;
+            
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 32px;
+            box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+            background-color: #302c6a;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 1px solid #302c6a;
+            transition: 0.5s;
+            transition: transform 0.5s ease-in-out;
+        }
+        #analyzeBut:hover{
+            background-color: #fff;
+            color: #17033c;
+            border: 1px solid #17033c;
+            transition: 0.5s;
+        }
+        #analyzeBut:not(:hover){
+            background-color: #302c6a;
+            color: #fff;
+            border: 1px solid #302c6a;
+            transition: 0.5s;
+        }
+        /* Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            
+        }
+        ::-webkit-scrollbar-track {
+            margin-bottom: 32px;
+            margin-top: 32px;
+            
+            border-radius: 32px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #888; 
+            border-radius: 32px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+        ::-webkit-scrollbar-thumb:not(:hover) {
+            background: #888;
+            
+            transition: 0.5s;
+        }
+        
+        /* Scroll Bar END */
+        #emotions{
+            display: none;
+            background-color: #302c6a;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 1px solid #302c6a;
+            transition: 0.5s;
+            transition: transform 0.5s ease-in-out;
+            border-radius: 32px;
+            padding: 2vh 6%;
+
+        }
+        #emotions.expandEmotions {
+            display: block;
+            animation: fade_in_show 1s
+        }
+
+        @keyframes fade_in_show {
+            0% {
+                opacity: 0;
+                transform: scale(0)
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+        #highest{
+            color: aquamarine;
+            font-weight: bolder;
+        }
+        .errorCard{
+            width: 40rem;
+            height: 15vh;
+            
+            margin: 0 0 15px 0;
+            padding: 2vh 6%;
+            border-radius: 32px;
+            box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+            background-color: #17033c;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center; 
+            transition: all 0.5s ease-in-out;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 1px solid #17033c;
+            position: relative;
+            bottom: -100px;
+            opacity: 0;
+            animation-name: slide-bot;
+            animation-duration: 1s;
+            animation-delay: 0.2s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes slide-bot {
+            0% {
+                bottom: -100px;
+                opacity: 0;
+            }
+            50%{
+                bottom: 0px;
+                opacity: 0.5;
+            }
+            100% {
+                bottom: 0;
+                opacity: 1;
+            }
+        }
+        
+        #downBut:hover{
+            cursor: pointer;
+            transform: scale(1.25);
+            background-color: #fff;
+            color: #17033c;
+            border: 1px solid #17033c;
+            transition: 0.2s ease-out 0.2s;
+            /* play the animation until it stops hovering */
+
+        }
+        #downBut:not(:hover){
+            background-color: #17033c;
+            color: #fff;
+            border: 1px solid #17033c;
+            transform: scale(1);
+            transition: 0.2s ease-in 0.2s;
+
+        }
+    </style>
+</head>
+<body>
+    
+    <main>
+        <div class="lds-ring" ><div></div><div></div><div></div><div></div></div>
+
+        <div class="content">
+            <h1>Top 5 Songs of a Selected Artist</h1>
+            <form>
+                <label for="artist_name">Enter artist name:</label>
+                <input type="text" id="artist_name" name="artist_name">
+                <input type="button" id="formBut" value="Submit" onclick="get_top_songs()">
+            </form>
+        
+            <div id="result"></div>
+        </div>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            
+            
+            $(".lds-ring").hide();
+            function changeContCss(){
+                // transform the content to flex start    
+                    
+                    $(".analyzeContainer").addClass("expand");
+                    $("#emotions").addClass("expandEmotions");
+                    $("#analyzeBut").css("transform", "translateX(-110%)");
+                
+                // expand the container
+                
+
+            }
+            function get_lyrics(song_name,artist_name,lyrics_link) {
+                
+                $("#result").html("");
+                $.ajax({
+                    url: "/get_lyrics",
+                    data: {
+                        song_name: song_name,
+                        artist_name: artist_name,
+                        lyrics_link: lyrics_link
+                    },
+                    type: "POST",
+                    beforeSend: function() {
+                        $(".lds-ring").show();
+                        $(".content").hide();
+                    },
+                    success: function(response) {
+                        $(".lds-ring").hide();
+                        $(".content").show();
+                        $("#result").html(response);
+                    }
+                });
+            }
+            function get_top_songs() {
+                var artist_name = $("#artist_name").val();
+                $.ajax({
+                    url: "/get_top_songs",
+                    data: {
+                        artist_name: artist_name
+                    },
+                    type: "POST",
+                    beforeSend: function() {
+                        $(".lds-ring").show();
+                        $(".content").hide();
+                    },
+                    success: function(response) {
+                        $(".lds-ring").hide();
+                        $(".content").show();
+                        $("#result").html(response);
+                    }
+                });
+            }
+            function save_LyricsEmotion(emotion,song_title,artist_name){
+                
+                
+                const lyricsDiv = document.querySelector('.card-lyrics');
+                // Select all the htags inside the div
+                const htagsLyric = lyricsDiv.innerHTML;
+
+                
+                var lyrics = htagsLyric;
+                
+                
+                $.ajax({
+                    url: "/save_LyricsEmotion",
+                    data: {
+                        lyrics: lyrics,
+                        emotion: emotion,
+                        song_title: song_title,
+                        artist_name: artist_name,
+                    },
+                    type: "POST",
+                    
+                    success: function(response) {
+                        
+                        fileName = response;
+                        $.ajax({
+                            url: "/download_file",
+                            data: {
+                                file_name: fileName
+                            },
+                            type: "POST",
+                            xhrFields: {
+                                responseType: 'blob'
+                            },
+                            success: function(blob) {
+                                var link = document.createElement('a');
+                                link.href = window.URL.createObjectURL(blob);
+                                link.download = fileName;
+                                link.click();
+                                $.ajax({
+                                    url: "/delete_file",
+                                    data: {
+                                        file_name: fileName
+                                    },
+                                    type: "POST",
+                                    success: function(response) {
+                                        console.log(response);
+                                    }
+                                });
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr, status, error);
+                    }
+                });
+
+            }
+        
+
+        </script>
+    </main>
+</body>
+</html>
